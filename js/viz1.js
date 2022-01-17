@@ -1,6 +1,3 @@
-
-
-
 function v1(person_data)
   {
 
@@ -74,7 +71,13 @@ function v1(person_data)
     x.domain(data2.map((d) => d.name));
 
     y.domain([0, d3.max(data2, (d) => d.Consommation)]);
-
+    svg.append("text")
+    .attr("class", "y label")
+    .attr("text-anchor", "end")
+    .attr("y", -20)
+    .attr("dy", ".75em")
+    .text("Data (Mb)");
+      
     svg
       .append("g")
       .attr("transform", "translate(0," + height + ")")
@@ -84,6 +87,7 @@ function v1(person_data)
       .attr("dx", "-.8em")
       .attr("dy", ".15em")
       .attr("transform", "rotate(-65)");
+
 
     svg.append("g").call(d3.axisLeft(y).ticks(6));
     svg
@@ -95,6 +99,7 @@ function v1(person_data)
       .attr("x", (d) => x(d.name))
       .attr("width", x.bandwidth())
       .attr("y", (d) => y(d.Consommation))
+      
       .attr("height", (d) => height - y(d.Consommation))
       .on("mouseover", function (event, d) {
         div.transition().duration(200).style("opacity", 0.9);
@@ -132,3 +137,5 @@ function v1(person_data)
 
   }
   v1('./donnee_jean.json')
+message.txt
+6 KB
