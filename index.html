@@ -12,6 +12,9 @@
 
   <body>
     <style>
+      body{
+        overflow-y: hidden;
+      }
       a,a:visited
         {text-decoration: none;
         color:white}
@@ -88,10 +91,11 @@
   }
 
       #bg {
+      overflow-y: hidden;
       top: -50%; 
       left: -50%; 
       width: 200%; 
-      height: 200%;
+      height: 80%;
     }
     #bg img {
       top: 0; 
@@ -146,18 +150,24 @@
       height: 150px;
       background-color: black;
     }
+    #heatmap{
+      width: 80%;
+      margin: 0 auto;
+    }
     </style>
 
 
     <script>
       empty_svg = '<svg width="700" height="300" viewBox="0,0,700,300" style="max-width: 100%; height: auto; height: intrinsic;"></svg>'
-      const margin = { top: 20, right: 20, bottom: 90, left: 40 },
-      width = 750 - margin.left - margin.right,
+      const margin = { top: 20, right: 20, bottom: 100, left: 100 },
+      width = 850 - margin.left - margin.right,
       height = 400 - margin.top - margin.bottom;
       var personne = './donnee_jean.json'; 
       var n ='Jean';
     </script>
+ 
 
+  </div>
     <div id="header">
       <h1 style="color: white; font-weight:bold; text-align: center; width: 100vw;">Consommation de données mobiles sur le smartphone</h1>
       <div id="menu">
@@ -228,8 +238,7 @@
         L'évolution de la consommation des données mobiles pour chaque tranche pendant le mois de Décembre 
       </h4>
     </div>
-
-
+    
 <hr>
 <div style="width:100vw;height:100px"></div>
 
@@ -252,52 +261,58 @@
     <hr>
     <div style="width:100vw;height:100px"></div>
 
-
+    <div class="buttons">
+      <button class="btn btn-info" onclick="document.getElementById('heatmap').innerHTML='';v4('./donnee_jean.json','Jean')">Jean</button>
+      <button class="btn btn-info" onclick="document.getElementById('heatmap').innerHTML='';v4('./donnee_source_2.json','Chaimaa')">Chaimaa</button>
+    </div>
     <div class="container">
-      <div id="hm">
-
+      <div id="heatmap">
       </div>
     </div>
     <script src = "js/MultiLine.js"></script>
     <script src = "js/donut.js"></script>
-    <script src = "js/heatmap.js"></script>
+    <!-- <script src = "js/heatmap.js"></script> -->
     <script src = "js/viz1.js"></script>
     <script src = "js/viz2.js"></script>
     <script src = "js/viz3.js"></script>
     <script src = "js/viz4.js"></script>
+
+
+
+    <script>
+      function viz1_click(name,p_link){
+        n = name
+        personne = p_link;
+        app = document.getElementById('apps').value
+        v2(p_link,app)
+        document.getElementById('p_app').innerHTML = name+'/'+app
+      }
+      function viz2_click(value){
+        app = document.getElementById('apps').value
+        document.getElementById('p_app').innerHTML = n+'/'+app
+        v2(personne,value)
+      }
+      
+    </script>
+    <div id="footer">
+      <div>
+        <a style="line-height: 150px;"  href="https://github.com/Chaimaa3o9a/Chaimaa3o9a.github.io" target="_blank"><i class="fa fa-github" style="font-size:48px;color:blue"></i></a>
+      </div>
+      <div style="text-align: center;">
+        <ul>OQAIDI Chaimaa</ul>
+        <ul>HEDDIA Bilel</ul>
+        <ul>BEVERAGGI JEAN</ul>
+        <ul>BLANCHARD Maxime</ul>
+      </div>
+      <div style="line-height: 150px;">
+        UE Data Visualisation 2021/2022
+      </div>
+    </div>
+    
+          <a id="totop" href="#">^</a>
   </body>
 
-<script>
-  function viz1_click(name,p_link){
-    n = name
-    personne = p_link;
-    app = document.getElementById('apps').value
-    v2(p_link,app)
-    document.getElementById('p_app').innerHTML = name+'/'+app
-  }
-  function viz2_click(value){
-    app = document.getElementById('apps').value
-    document.getElementById('p_app').innerHTML = n+'/'+app
-    v2(personne,value)
-  }
-</script>
 
-<div id="footer">
-  <div>
-    <a style="line-height: 150px;"  href="https://github.com/Chaimaa3o9a/Chaimaa3o9a.github.io" target="_blank"><i class="fa fa-github" style="font-size:48px;color:blue"></i></a>
-  </div>
-  <div style="text-align: center;">
-    <ul>OQAIDI Chaimaa</ul>
-    <ul>HEDDIA Bilel</ul>
-    <ul>BEVERAGGI JEAN</ul>
-    <ul>BLANCHARD Maxime</ul>
-  </div>
-  <div style="line-height: 150px;">
-    UE Data Visualisation 2021/2022
-  </div>
-</div>
-
-
-      <a id="totop" href="#">^</a>
 
 </html>
+
