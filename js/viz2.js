@@ -7,7 +7,7 @@ function v2(person_data,selected){
     let ProcessedDAta = [
       ...data
         .filter((item) => {
-          return item.Tranche === "F";
+          return item.Tranche === "15:00-18:00";
         })
         .map((d) => {
           return {
@@ -117,4 +117,3 @@ console.log(data_chart2)
 }
 
 v2('./donnee_jean.json','Discord')
-  
